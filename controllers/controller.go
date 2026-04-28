@@ -157,3 +157,15 @@ func GetByCPF(c *gin.Context) {
 
 	c.JSON(http.StatusOK, student)
 }
+
+func ShowPageIndex(c *gin.Context) {
+	var alunos []models.Aluno
+	database.DB.Find(&alunos)
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"alunos": alunos,
+	})
+}
+
+func RouteNotFound(c *gin.Context) {
+	c.HTML(http.StatusNotFound, "404.html", nil)
+}
